@@ -1,0 +1,37 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/search_restaurant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cari restoran"/>
+
+    <Spinner
+        android:id="@+id/people_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:background="@android:color/holo_orange_light"/>
+
+    <TextView
+        android:text="Rekomendasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <!-- RecyclerView untuk menampilkan restoran rekomendasi -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recommended_restaurants"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>

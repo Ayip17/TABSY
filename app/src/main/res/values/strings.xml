@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">TABSY</string>
+    <string-array name="people_count_array">
+        <item>1 Orang</item>
+        <item>2 Orang</item>
+        <item>3 Orang</item>
+        <item>4 Orang</item>
+    </string-array>
+
 </resources>

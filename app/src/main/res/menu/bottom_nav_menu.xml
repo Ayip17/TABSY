@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_beranda"
+        android:title="Beranda"
+        android:icon="@drawable/ic_home"
+        android:contentDescription="Go to home" />
+
+    <item
+        android:id="@+id/nav_reservasi"
+        android:icon="@drawable/ic_calendar"
+        android:title="Reservasi"
+        android:contentDescription="Make a reservation" />
+
+    <item
+        android:id="@+id/nav_favorit"
+        android:icon="@drawable/ic_favorite"
+        android:title="Favorit"
+        android:contentDescription="View favorites" />
+
+    <item
+        android:id="@+id/nav_profil"
+        android:icon="@drawable/ic_profile"
+        android:title="Profil"
+        android:contentDescription="View profile" />
+
+</menu>

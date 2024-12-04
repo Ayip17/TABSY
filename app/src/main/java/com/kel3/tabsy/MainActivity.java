@@ -1,6 +1,7 @@
 package com.kel3.tabsy;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import com.kel3.tabsy.ReservasiFragment;
 import com.kel3.tabsy.FavoritFragment;
 import com.kel3.tabsy.BerandaFragment;
 
+import com.kel3.tabsy.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         loadFragment(new BerandaFragment());
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
+
+            int itemId = item.getItemId();
+            Log.d("DEBUG", "Clicked item ID: " + itemId);
+            return true;
+
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
                 case R.id.nav_beranda:

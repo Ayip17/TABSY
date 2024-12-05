@@ -72,18 +72,22 @@ public class BerandaFragment extends Fragment {
         });
 
         // Inisialisasi RecyclerView
-        RecyclerView recyclerView = view.findViewById(R.id.recommended_restaurants);
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
+        RecyclerView recyclerViewRec = view.findViewById(R.id.recommended_restaurants);
+        RecyclerView recyclerViewNear = view.findViewById(R.id.nearest_restaurants);
+        recyclerViewRec.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewNear.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
 
         // Data contoh untuk RecyclerView
         List<Restaurant> restaurants = new ArrayList<>();
         restaurants.add(new Restaurant("Restoran A", "Deskripsi Restoran A"));
         restaurants.add(new Restaurant("Restoran B", "Deskripsi Restoran B"));
         restaurants.add(new Restaurant("Restoran C", "Deskripsi Restoran C"));
+        restaurants.add(new Restaurant("Restoran C", "Deskripsi Restoran D"));
+
 
         // Set Adapter
         RestaurantAdapter restaurantAdapter = new RestaurantAdapter(restaurants);
-        recyclerView.setAdapter(restaurantAdapter);
+        recyclerViewRec.setAdapter(restaurantAdapter);
 
 
         // Return View di akhir metode

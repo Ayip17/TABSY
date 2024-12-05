@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.menu.bottom_nav_menu);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
-            int itemId = item.getItemId();
-            Log.d("DEBUG", "Clicked item ID: " + itemId);
-            return true;
+//            int itemId = item.getItemId();
+//            Log.d("DEBUG", "Clicked item ID: " + itemId);
+//            return true;
 
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.nav_favorit:
                     selectedFragment = new FavoritFragment();
+                    break;
+                case R.id.nav_profil:
+                    selectedFragment = new ProfilFragment();
                     break;
             }
             if (selectedFragment != null) {

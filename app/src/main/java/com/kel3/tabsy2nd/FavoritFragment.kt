@@ -13,6 +13,9 @@ import com.kel3.tabsy2nd.utils.FavoriteManager
 
 class FavoritFragment : Fragment() {
 
+    private lateinit var favoriteAdapter: LargeCardAdapter
+    private val favoriteList = mutableListOf<Restaurant>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,27 +26,40 @@ class FavoritFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.favorite_restaurants)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // Muat data favorit dari Firebase
-        FavoriteManager.loadFromFirebase { favorites: List<Restaurant> ->
-            recyclerView.adapter = LargeCardAdapter(favorites.toMutableList()) { restaurant ->
-                FavoriteManager.removeFavorite(restaurant.id!!) {
-                    Toast.makeText(
-                        requireContext(),
-                        "${restaurant.name} dihapus dari favorit",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    recyclerView.adapter?.notifyDataSetChanged()
-                }
+        // Initialize the adapter with an empty list
+        favoriteAdapter = LargeCardAdapter(favoriteList) { restaurant ->
+            // Handle removing favorite
+            FavoriteManager.removeFavorite(restaurant.id!!) {
+                Toast.makeText(
+                    requireContext(),
+                    "${restaurant.name} dihapus dari favorit",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                // Update the dataset and notify the adapter
+                favoriteList.remove(restaurant)
+                favoriteAdapter.notifyDataSetChanged()
             }
         }
+        recyclerView.adapter = favoriteAdapter
 
+        // Load favorites from Firebase and update the adapter
+        FavoriteManager.loadFromFirebase { favorites ->
+            favoriteList.clear()
+            favoriteList.addAll(favorites)
+            favoriteAdapter.notifyDataSetChanged()
+        }
 
         return view
     }
 
     override fun onResume() {
         super.onResume()
-        // Perbarui adapter jika fragment dilanjutkan
-        view?.findViewById<RecyclerView>(R.id.favorite_restaurants)?.adapter?.notifyDataSetChanged()
+        // Reload favorites to ensure data is up-to-date
+        FavoriteManager.loadFromFirebase { favorites ->
+            favoriteList.clear()
+            favoriteList.addAll(favorites)
+            favoriteAdapter.notifyDataSetChanged()
+        }
     }
 }

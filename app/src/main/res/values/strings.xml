@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TABSY2nd</string>
+    <string name="app_name">TABSY</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
     <string-array name="people_count_array">

@@ -24,7 +24,15 @@ class LargeCardAdapter(
         holder.tvName.text = restaurant.name
         holder.tvPrice.text = restaurant.price
         holder.tvLocation.text = restaurant.location
-        // Favorit click
+
+        // Set image if available
+        restaurant.imageResource?.let {
+            holder.ivImage.setImageResource(it)
+        } ?: run {
+            holder.ivImage.setImageResource(R.drawable.ic_img) // Default image
+        }
+
+        // Handle favorite click
         holder.ivFavorite.setOnClickListener {
             onFavoriteClicked(restaurant)
         }
@@ -47,6 +55,7 @@ class LargeCardAdapter(
         val tvName: TextView = itemView.findViewById(R.id.tvRestaurantName)
         val tvPrice: TextView = itemView.findViewById(R.id.tvRestaurantPrice)
         val tvLocation: TextView = itemView.findViewById(R.id.tvRestaurantLocation)
+        val ivImage: ImageView = itemView.findViewById(R.id.ivRestaurantImage) // Add this line
         val ivFavorite: ImageView = itemView.findViewById(R.id.ivFavorite)
     }
 }

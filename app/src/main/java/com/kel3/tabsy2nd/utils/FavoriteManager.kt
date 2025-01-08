@@ -22,12 +22,13 @@ object FavoriteManager {
         restaurant.id = restaurant.id ?: favoritesRef.push().key // Generate unique ID if null
         favoritesRef.child(restaurant.id!!).setValue(restaurant)
             .addOnSuccessListener {
-                favoriteRestaurants.add(restaurant) // Add to local list
-                Log.d("FavoriteManager", "Favorite added: ${restaurant.name}")
+                favoriteRestaurants.add(restaurant)
+                Log.d("FavoriteManager", "Favorite added: ${restaurant.name} with imageResource: ${restaurant.imageResource}")
             }
             .addOnFailureListener { e ->
                 Log.e("FavoriteManager", "Failed to add favorite: ${e.message}")
             }
+
     }
 
     // Mengambil semua restoran favorit
@@ -46,18 +47,30 @@ object FavoriteManager {
 
         favoritesRef.get()
             .addOnSuccessListener { snapshot ->
-                favoriteRestaurants.clear() // Clear local list
+                favoriteRestaurants.clear() // Clear the local list first
                 snapshot.children.forEach { child ->
                     val restaurant = child.getValue(Restaurant::class.java)
-                    restaurant?.let { favoriteRestaurants.add(it) }
+                    restaurant?.let {
+                        favoriteRestaurants.add(
+                            Restaurant(
+                                id = it.id,
+                                name = it.name,
+                                description = it.description,
+                                price = it.price,
+                                location = it.location,
+                                imageResource = it.imageResource // Include the image resource
+                            )
+                        )
+                    }
                 }
                 Log.d("FavoriteManager", "Favorites loaded: ${favoriteRestaurants.size}")
-                onLoaded(favoriteRestaurants) // Update UI with loaded data
+                onLoaded(favoriteRestaurants) // Notify the UI with the updated list
             }
             .addOnFailureListener { e ->
                 Log.e("FavoriteManager", "Failed to load favorites: ${e.message}")
             }
     }
+
 
     // Menghapus restoran dari daftar favorit dan Firebase
     fun removeFavorite(restaurantId: String, onComplete: () -> Unit) {

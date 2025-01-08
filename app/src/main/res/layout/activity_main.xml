@@ -7,24 +7,42 @@
     android:paddingTop="30dp"
     tools:context="ReservasiFragment">
 
-    <FrameLayout
-        android:id="@+id/flFragment"
+    <!-- ScrollView untuk membuat konten scrollable -->
+    <ScrollView
+        android:id="@+id/scrollableFragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <!-- FrameLayout untuk fragment -->
+        <FrameLayout
+            android:id="@+id/flFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </ScrollView>
+
+    <!-- BottomNavigationView -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:background="@color/white"
+        style="@style/Widget.BottomNavigationView.Custom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:itemIconSize="30dp"
         app:itemTextAppearanceActive="@style/BottomNavTextStyleActive"
         app:itemTextAppearanceInactive="@style/BottomNavTextStyleInactive"
+        app:itemIconTint="@color/bottom_nav_color_selector"
+        app:itemTextColor="@color/bottom_nav_color_selector"
+        app:itemBackground="@drawable/bottom_nav_item_background"
         app:menu="@menu/bottom_navbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

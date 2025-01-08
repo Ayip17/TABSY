@@ -3,8 +3,6 @@ package com.kel3.tabsy2nd
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -18,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
         val berandaFragment = BerandaFragment()
-        val reservasiFragment = ReservasiFragment()
+        val reservasiFragment = PesananFragment()
         val favoritFragment =FavoritFragment()
         val profilFragment = ProfilFragment()
 
@@ -27,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId) {
                 R.id.icBeranda -> setCurrentFragment(berandaFragment)
-                R.id.icReservasi -> setCurrentFragment(reservasiFragment)
+                R.id.icPesanan -> setCurrentFragment(reservasiFragment)
                 R.id.icFavorit-> setCurrentFragment(favoritFragment)
                 R.id.icProfil -> setCurrentFragment(profilFragment)
             }

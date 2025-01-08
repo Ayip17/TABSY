@@ -1,32 +1,59 @@
-<LinearLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="8dp"
-    >
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    android:background="@color/white">
 
-    <ImageView
-        android:id="@+id/tvRestaurantImg"
-        android:layout_width="149dp"
-        android:layout_height="50dp"
-        android:contentDescription="Restaurant image"
-        android:gravity="center_horizontal"
-        android:src="@drawable/ic_img" />
-
-    <TextView
-        android:id="@+id/tvRestaurantName"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nama Restoran"
-        android:textStyle="bold"
-        android:textSize="16sp" />
+        android:orientation="vertical"
+        android:padding="12dp">
 
-    <TextView
-        android:id="@+id/tvRestaurantDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Deskripsi Restoran"
-        android:textSize="14sp" />
+        <!-- Gambar Restoran -->
+        <ImageView
+            android:id="@+id/tvRestaurantImg"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_img"
+            android:contentDescription="Restaurant image" />
 
-</LinearLayout>
+        <!-- Nama Restoran -->
+        <TextView
+            android:id="@+id/tvRestaurantName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Nama Restoran"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/black" />
+
+        <!-- Deskripsi Restoran -->
+        <TextView
+            android:id="@+id/tvRestaurantDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Deskripsi Restoran"
+            android:textSize="14sp"
+            android:textColor="@color/dark_gray" />
+
+        <!-- Tombol Tambah ke Favorit -->
+        <Button
+            android:id="@+id/btnFavorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/yellow"
+            android:text="Tambahkan ke Favorit"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

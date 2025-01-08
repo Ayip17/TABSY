@@ -2,46 +2,43 @@ package com.kel3.tabsy2nd
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.kel.RestaurantAdapter
 import com.kel3.tabsy.Restaurant
+import com.kel3.tabsy2nd.utils.FavoriteManager
 import java.util.*
 
 class BerandaFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate layout fragment_beranda
         val view = inflater.inflate(R.layout.fragment_beranda, container, false)
 
-        // Inisialisasi Spinner
+        // Inisialisasi Spinner untuk jumlah orang
         val spinnerPeople = view.findViewById<Spinner>(R.id.people_count)
-
-        // Isi Spinner dengan data
-        val adapter = ArrayAdapter.createFromResource(
+        val peopleAdapter = ArrayAdapter.createFromResource(
             requireContext(),
             R.array.people_count_array,
             android.R.layout.simple_spinner_item
         )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerPeople.adapter = adapter
+        peopleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerPeople.adapter = peopleAdapter
 
-        // Inisialisasi Button untuk memilih tanggal
+        // Inisialisasi DatePicker untuk memilih tanggal
         val btnDate = view.findViewById<Button>(R.id.date_button)
         btnDate.setOnClickListener {
             val calendar = Calendar.getInstance()
-            val datePicker = DatePickerDialog(
+            DatePickerDialog(
                 requireContext(),
                 { _, year, month, dayOfMonth ->
                     val selectedDate = "$dayOfMonth/${month + 1}/$year"
@@ -50,15 +47,14 @@ class BerandaFragment : Fragment() {
                 calendar[Calendar.YEAR],
                 calendar[Calendar.MONTH],
                 calendar[Calendar.DAY_OF_MONTH]
-            )
-            datePicker.show()
+            ).show()
         }
 
-        // Inisialisasi Button untuk memilih waktu
+        // Inisialisasi TimePicker untuk memilih waktu
         val btnTime = view.findViewById<Button>(R.id.time_button)
         btnTime.setOnClickListener {
             val calendar = Calendar.getInstance()
-            val timePicker = TimePickerDialog(
+            TimePickerDialog(
                 requireContext(),
                 { _, hourOfDay, minute ->
                     val selectedTime = String.format("%02d:%02d", hourOfDay, minute)
@@ -67,8 +63,7 @@ class BerandaFragment : Fragment() {
                 calendar[Calendar.HOUR_OF_DAY],
                 calendar[Calendar.MINUTE],
                 true
-            )
-            timePicker.show()
+            ).show()
         }
 
         // Inisialisasi RecyclerView
@@ -79,29 +74,33 @@ class BerandaFragment : Fragment() {
         recyclerViewNear.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-
-
         // Data untuk RecyclerView Recommended
         val recommendedRestaurants: MutableList<Restaurant> = ArrayList()
-        recommendedRestaurants.add(Restaurant("Restoran A", "Deskripsi Restoran A"))
-        recommendedRestaurants.add(Restaurant("Restoran B", "Deskripsi Restoran B"))
-        recommendedRestaurants.add(Restaurant("Restoran C", "Deskripsi Restoran C"))
-        recommendedRestaurants.add(Restaurant("Restoran D", "Deskripsi Restoran D"))
+        recommendedRestaurants.add(Restaurant("Resto1", "Restoran A", "Deskripsi Restoran A", "10,0000", "Jl. Raya No. 123, Pekanbaru", R.drawable.gacoan))
+        recommendedRestaurants.add(Restaurant("Resto2", "Restoran B", "Deskripsi Restoran B", "10,0000", "Jl. Raya No. 123, Pekanbaru", R.drawable.jus))
+        recommendedRestaurants.add(Restaurant("Resto3", "Restoran C", "Deskripsi Restoran C", "10,0000", "Jl. Raya No. 123, Pekanbaru", R.drawable.donat))
+        recommendedRestaurants.add(Restaurant("Resto4", "Restoran D", "Deskripsi Restoran D", "10,0000", "Jl. Raya No. 123, Pekanbaru", R.drawable.bakso))
 
         // Data untuk RecyclerView Nearest
         val nearestRestaurants: MutableList<Restaurant> = ArrayList()
-        nearestRestaurants.add(Restaurant("Restoran W", "Dekat Lokasi Anda"))
-        nearestRestaurants.add(Restaurant("Restoran X", "Dekat Lokasi Anda"))
-        nearestRestaurants.add(Restaurant("Restoran Y", "Dekat Lokasi Anda"))
-        nearestRestaurants.add(Restaurant("Restoran Z", "Dekat Lokasi Anda"))
+        nearestRestaurants.add(Restaurant("Resto5", "Restoran W", "Dekat Lokasi Anda", "10,0000", "Jl. Raya No. 123, Pekanbaru", R.drawable.ramen))
+        nearestRestaurants.add(Restaurant("Resto6", "Restoran X", "Dekat Lokasi Anda", "10,0000", "Jl. Raya No. 123, Pekanbaru", R.drawable.tiramisu))
+        nearestRestaurants.add(Restaurant("Resto7", "Restoran Y", "Dekat Lokasi Anda", "10,0000", "Jl. Raya No. 123, Pekanbaru", R.drawable.burger))
+        nearestRestaurants.add(Restaurant("Resto8", "Restoran Z", "Dekat Lokasi Anda", "10,0000", "Jl. Raya No. 123, Pekanbaru", R.drawable.kopi))
+
 
         // Set Adapter untuk Recommended
-        val recommendAdapter = RestaurantAdapter(recommendedRestaurants)
+        val recommendAdapter = RestaurantAdapter(recommendedRestaurants) { restaurant ->
+            addFavorite(restaurant)
+        }
         recyclerViewRec.adapter = recommendAdapter
 
         // Set Adapter untuk Nearest
-        val nearestAdapter = RestaurantAdapter(nearestRestaurants)
+        val nearestAdapter = RestaurantAdapter(nearestRestaurants) { restaurant ->
+            addFavorite(restaurant)
+        }
         recyclerViewNear.adapter = nearestAdapter
+        
 
         // Tombol Search dengan Validasi
         val searchButton = view.findViewById<Button>(R.id.search_button)
@@ -121,7 +120,14 @@ class BerandaFragment : Fragment() {
             }
         }
 
-        // Return View di akhir metode
         return view
     }
+
+    private fun addFavorite(restaurant: Restaurant) {
+        FavoriteManager.addFavorite(restaurant)
+        Toast.makeText(requireContext(), "${restaurant.name} ditambahkan ke Favorit", Toast.LENGTH_SHORT).show()
+        Log.d("BerandaFragment", "Added to favorites: ${restaurant.name}")
+    }
+
+
 }

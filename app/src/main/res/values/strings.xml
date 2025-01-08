@@ -8,4 +8,6 @@
         <item>3 Orang</item>
         <item>4 Orang (atau lebih)</item>
     </string-array>
+    <string name="restaurant_image">Gambar restoran</string>
+    <string name="book_table">Pesan Meja</string>
 </resources>

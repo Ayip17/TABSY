@@ -6,9 +6,9 @@
         android:icon="@drawable/ic_beranda"/>
 
     <item
-        android:id="@+id/icReservasi"
-        android:title="Reservasi"
-        android:icon="@drawable/ic_reservasi"/>
+        android:id="@+id/icPesanan"
+        android:title="Pesanan"
+        android:icon="@drawable/ic_pesanan"/>
     <item
         android:id="@+id/icFavorit"
         android:title="Favorit"

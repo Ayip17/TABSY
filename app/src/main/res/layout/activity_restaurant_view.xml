@@ -1,51 +1,91 @@
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Gambar Restoran -->
+    <ImageView
+        android:id="@+id/ivRestaurantImage"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/restaurant_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Nama Restoran -->
     <TextView
         android:id="@+id/tvRestaurantName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Nama Restoran"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/ivRestaurantImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/overpass_bold"/>
 
+    <!-- Alamat Restoran -->
+    <TextView
+        android:id="@+id/tvRestaurantAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#757575"
+        app:layout_constraintTop_toBottomOf="@id/tvRestaurantName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/overpass_regular"/>
+
+    <!-- Harga Restoran -->
+    <TextView
+        android:id="@+id/tvRestaurantPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:paddingTop="4dp"
+        android:textColor="#4CAF50"
+        app:layout_constraintTop_toBottomOf="@id/tvRestaurantAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/overpass_regular"/>
+
+    <!-- Deskripsi Restoran -->
     <TextView
         android:id="@+id/tvRestaurantDescription"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Deskripsi restoran..."
-        android:layout_marginTop="8dp"/>
+        android:paddingTop="8dp"
+        android:lineSpacingExtra="4dp"
+        app:layout_constraintTop_toBottomOf="@id/tvRestaurantPrice"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/overpass_regular"/>
 
-    <TextView
-        android:id="@+id/tvRestaurantLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alamat lengkap restoran..."
-        android:layout_marginTop="8dp"/>
-
-    <TextView
-        android:id="@+id/tvRestaurantPriceRange"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Harga: RpXX.XXX"
-        android:layout_marginTop="8dp"/>
-
+    <!-- Tombol Pesan Meja -->
     <Button
         android:id="@+id/btnBookTable"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Pesan Meja"
-        android:background="@android:color/holo_green_light"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/yellow"
+        android:textColor="@color/black"
+        android:text="@string/book_table"
+        app:layout_constraintTop_toBottomOf="@id/tvRestaurantDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/overpass_bold"/>
 
-    <!-- Tambahkan FrameLayout untuk menampung fragment -->
+    <!-- FrameLayout -->
     <FrameLayout
         android:id="@+id/flFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
-</LinearLayout>
+        app:layout_constraintTop_toBottomOf="@id/btnBookTable"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

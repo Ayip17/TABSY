@@ -2,6 +2,7 @@ package com.kel3.tabsy2nd
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -14,22 +15,31 @@ class RestaurantViewActivity : AppCompatActivity() {
         // Ambil data dari Intent
         val restaurantName = intent.getStringExtra("restaurant_name")
         val restaurantDescription = intent.getStringExtra("restaurant_description")
+        val restaurantAddress = intent.getStringExtra("restaurant_address")
+        val restaurantPrice = intent.getStringExtra("restaurant_price")
+        val restaurantImage = intent.getIntExtra("restaurant_image", R.drawable.ic_img)
 
-        // Set data ke dalam View
-        val nameTextView = findViewById<TextView>(R.id.tvRestaurantName)
-        val descriptionTextView = findViewById<TextView>(R.id.tvRestaurantDescription)
-        val bookTableButton = findViewById<Button>(R.id.btnBookTable)
+        // Bind data ke View
+        val ivImage = findViewById<ImageView>(R.id.ivRestaurantImage)
+        val tvName = findViewById<TextView>(R.id.tvRestaurantName)
+        val tvAddress = findViewById<TextView>(R.id.tvRestaurantAddress)
+        val tvPrice = findViewById<TextView>(R.id.tvRestaurantPrice)
+        val tvDescription = findViewById<TextView>(R.id.tvRestaurantDescription)
+        val btnBookTable = findViewById<Button>(R.id.btnBookTable)
 
-        nameTextView.text = restaurantName
-        descriptionTextView.text = restaurantDescription
+        // Set data
+        ivImage.setImageResource(restaurantImage)
+        tvName.text = restaurantName
+        tvAddress.text = restaurantAddress
+        tvPrice.text = "Harga: $restaurantPrice"
+        tvDescription.text = restaurantDescription
 
-        // Tombol untuk memesan meja
-        bookTableButton.setOnClickListener {
-            // Navigate to ReservasiFragment
+        // Navigasi ke ReservasiFragment
+        btnBookTable.setOnClickListener {
             val reservasiFragment = ReservasiFragment()
             supportFragmentManager.beginTransaction()
-                .replace(R.id.flFragment, reservasiFragment) // Use the ID of your container
-                .addToBackStack(null) // Optional: add to back stack to allow back navigation
+                .replace(R.id.flFragment, reservasiFragment)
+                .addToBackStack(null)
                 .commit()
         }
     }

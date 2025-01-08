@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "840399467189",
+    "firebase_url": "https://tabsy-kel3-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "tabsy-kel3",
+    "storage_bucket": "tabsy-kel3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840399467189:android:38ffb93b5afb4de47ac4fc",
+        "android_client_info": {
+          "package_name": "com.kel3.tabsy2nd"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzRUMyiZ92PIA3lkF_6D0XMWA5CioJFu8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

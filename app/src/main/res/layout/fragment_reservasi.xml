@@ -1,90 +1,85 @@
-<LinearLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
-
-    <!-- Tombol untuk memilih tanggal -->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="8dp">
-
-        <TextView
-            android:id="@+id/tvSelectedDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingEnd="8dp"
-            android:text="Tanggal: "
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tvSelectedTime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingEnd="8dp"
-            android:text="Waktu: "
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tvTotalPelanggan"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Total: 0"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnDatePicker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pilih Tanggal" />
-
-    <!-- TextView untuk menampilkan tanggal -->
-
-    <!-- Tombol untuk memilih waktu -->
-    <Button
-        android:id="@+id/btnTimePicker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Pilih Waktu" />
-
-    <!-- TextView untuk menampilkan waktu -->
-
-    <!-- Spinner untuk DropDown Menu -->
-
-    <!-- TextView untuk menampilkan pilihan dropdown -->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Pilih Tanggal, Waktu, dan Total Pelanggan -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvSelectedDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tanggal: -"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvSelectedTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Waktu: -"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvTotalPelanggan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Total: 0"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Tombol Pilih Tanggal -->
+        <Button
+            android:id="@+id/btnDatePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Pilih Tanggal"
+            android:backgroundTint="@color/yellow"
+            android:textColor="@color/black" />
+
+        <!-- Tombol Pilih Waktu -->
+        <Button
+            android:id="@+id/btnTimePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Pilih Waktu"
+            android:backgroundTint="@color/yellow"
+            android:textColor="@color/black"/>
+
+        <!-- Jumlah Pelanggan -->
         <TextView
             android:id="@+id/tvJumlahPelanggan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
+            android:layout_marginBottom="8dp"
             android:text="Jumlah Pelanggan"
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <!-- Counter for Dewasa -->
+        <!-- Counter untuk Dewasa -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingBottom="8dp">
+            android:layout_marginBottom="8dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -94,40 +89,38 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnMinusDewasa"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="-"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/black"/>
 
-                <Button
-                    android:id="@+id/btnMinusDewasa"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="@string/minus" />
+            <TextView
+                android:id="@+id/tvCountDewasa"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="0"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/tvCountDewasa"
-                    android:layout_width="50dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="16sp" />
-
-                <Button
-                    android:id="@+id/btnPlusDewasa"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="@string/plus" />
-            </LinearLayout>
+            <Button
+                android:id="@+id/btnPlusDewasa"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="+"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
-        <!-- Counter for Anak-anak -->
+        <!-- Counter untuk Anak-anak -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingBottom="8dp">
+            android:layout_marginBottom="8dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -137,41 +130,38 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnMinusAnak"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="-"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/black"/>
 
-                <Button
-                    android:id="@+id/btnMinusAnak"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:textColor="@color/white"
-                    android:text="-" />
+            <TextView
+                android:id="@+id/tvCountAnak"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="0"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/tvCountAnak"
-                    android:layout_width="50dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="16sp" />
-
-                <Button
-                    android:id="@+id/btnPlusAnak"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="@string/plus" />
-            </LinearLayout>
+            <Button
+                android:id="@+id/btnPlusAnak"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="+"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
-        <!-- Counter for Balita -->
+        <!-- Counter untuk Balita -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingBottom="8dp">
+            android:layout_marginBottom="16dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -181,34 +171,38 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnMinusBalita"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="-"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/black"/>
 
-                <Button
-                    android:id="@+id/btnMinusBalita"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="-" />
+            <TextView
+                android:id="@+id/tvCountBalita"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="0"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/tvCountBalita"
-                    android:layout_width="50dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="16sp" />
-
-                <Button
-                    android:id="@+id/btnPlusBalita"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="+" />
-            </LinearLayout>
-
+            <Button
+                android:id="@+id/btnPlusBalita"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="+"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
+        <!-- Tombol Konfirmasi -->
+        <Button
+            android:id="@+id/btnConfirmReservation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Konfirmasi Reservasi"
+            android:backgroundTint="@color/yellow"
+            android:textColor="@color/black"/>
     </LinearLayout>
-
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

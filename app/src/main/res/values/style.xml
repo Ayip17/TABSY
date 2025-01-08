@@ -6,4 +6,9 @@
     <style name="BottomNavTextStyleInactive" parent="TextAppearance.AppCompat.Caption">
         <item name="android:paddingTop">4dp</item>
     </style>
+
+    <style name="Widget.BottomNavigationView.Custom" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemRippleColor">@android:color/transparent</item>
+    </style>
+
 </resources>

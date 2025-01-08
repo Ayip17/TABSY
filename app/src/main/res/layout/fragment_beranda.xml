@@ -6,6 +6,21 @@
     android:padding="10dp"
     android:id="@+id/tvBeranda">
 
+    <!-- Frame untuk Half-Rounded Shape -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/half_rounded_top">
+
+        <!-- Konten di dalam Half-Rounded Shape -->
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:src="@drawable/tabsy" />
+    </FrameLayout>
+
     <TextView
         android:id="@+id/tvGreeting"
         android:layout_width="wrap_content"
@@ -13,7 +28,8 @@
         android:text="Halo! Ayo jelajahi restoran"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:padding="8dp" />
+        android:padding="8dp"
+        android:fontFamily="@font/overpass_bold"/>
 
     <EditText
         android:id="@+id/search_restaurant"
@@ -22,7 +38,8 @@
         android:hint="Cari restoran"
         android:background="@drawable/round_corner"
         android:padding="8dp"
-        android:layout_margin="8dp"/>
+        android:layout_margin="8dp"
+        android:fontFamily="@font/overpass_bold"/>
 
     <Spinner
         android:id="@+id/people_count"
@@ -30,7 +47,8 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:layout_margin="8dp"
-        android:background="@drawable/round_corner"/>
+        android:background="@drawable/round_corner"
+        android:fontFamily="@font/overpass_regular"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,30 +57,45 @@
         android:weightSum="2"
         android:padding="8dp">
 
+        <!-- Tombol Pilih Tanggal -->
         <Button
             android:id="@+id/date_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Pilih Tanggal"
-            android:layout_margin="8dp"/>
+            android:layout_margin="8dp"
+            android:drawableLeft="@drawable/ic_pesanan"
+            android:drawablePadding="8dp"
+            android:backgroundTint="@color/yellow"
+            android:textColor="@color/black"
+            android:fontFamily="@font/overpass_regular"/>
 
+        <!-- Tombol Pilih Waktu -->
         <Button
             android:id="@+id/time_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Pilih Waktu"
-            android:layout_margin="8dp"/>
+            android:layout_margin="8dp"
+            android:drawableLeft="@drawable/ic_clock"
+            android:drawablePadding="8dp"
+            android:backgroundTint="#FFCB3C"
+            android:textColor="@color/black"
+            android:fontFamily="@font/overpass_regular"/>
     </LinearLayout>
+
 
     <Button
         android:id="@+id/search_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Search"
-        android:background="@android:color/holo_orange_light"
-        android:layout_margin="8dp" />
+        android:layout_margin="8dp"
+        android:backgroundTint="#FFCB3C"
+        android:textColor="@color/black"
+        android:fontFamily="@font/overpass_bold"/>
 
     <TextView
         android:text="Rekomendasi"
@@ -70,7 +103,8 @@
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="30dp" />
+        android:paddingTop="30dp"
+        android:fontFamily="@font/overpass_bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recommended_restaurants"
@@ -84,7 +118,8 @@
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp" />
+        android:paddingTop="8dp"
+        android:fontFamily="@font/overpass_bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/nearest_restaurants"

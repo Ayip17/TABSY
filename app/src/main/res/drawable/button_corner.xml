@@ -1,4 +1,19 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#ecad3b"/> <!-- Warna tombol -->
-    <corners android:radius="4dp"/> <!-- Mengurangi radius sudut -->
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Layer Background -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#FFCB3C" /> <!-- Warna latar tombol -->
+            <corners android:radius="11dp" /> <!-- Sudut melengkung -->
+        </shape>
+    </item>
+
+    <!-- Layer Outline -->
+    <item android:left="0dp" android:right="0dp" android:top="0dp" android:bottom="0dp">
+        <shape android:shape="rectangle">
+            <stroke
+                android:color="#000000"
+                android:width="2dp" />
+            <corners android:radius="11dp" /> <!-- Sudut melengkung (sama dengan background) -->
+        </shape>
+    </item>
+</layer-list>
